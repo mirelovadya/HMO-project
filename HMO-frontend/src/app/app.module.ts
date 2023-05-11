@@ -29,9 +29,7 @@ import { VaccinatedComponent } from './components/graphs/vaccinated/vaccinated.c
     HttpClientModule,
     NgChartsModule,
     AgmCoreModule.forRoot({
-      // apiKey: "AIzaSyAzvZZesOgZkN2AS4ROOjdDfXXLtpVKA_E",
-      apiKey: "AIzaSyA5FOLGxfLIs3oRGvuu2deAm15OzP0k7rk",
-
+      apiKey: "AIzaSyAzvZZesOgZkN2AS4ROOjdDfXXLtpVKA_E",
       libraries: ['places']
     }),
   ],
