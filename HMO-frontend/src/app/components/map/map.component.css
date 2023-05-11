@@ -1,0 +1,12 @@
+.height{
+    height: 300px;
+}
+
+.modal-header .btn-close {
+    margin: unset;
+}
+
+.center{
+    margin: auto;
+    display: block;
+}

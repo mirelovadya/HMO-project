@@ -1,0 +1,8 @@
+{
+    "ip": "localhost",
+    "port": 3309,
+    "https": false,
+    "keyPath": "c:/Users/User/Desktop/development/certificate/key.pem",
+    "crtPath": "c:/Users/User/Desktop/development/certificate/crt.pem",
+    "caPath": "c:/Users/User/Desktop/development/certificate/ca.pem"
+}

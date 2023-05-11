@@ -1,0 +1,57 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Customer {
+  customerIndex Int            @id @default(autoincrement())
+  fullName      String         @db.Text
+  id            String         @db.Text
+  address       String?        @db.Text
+  dateOfBirthay DateTime?      @db.DateTime(0)
+  phone         String?        @db.Text
+  mobilePhone   String?        @db.Text
+  image         String?        @db.LongText
+  vaccinations  Vaccinations[]
+  diseases      Diseases?
+
+  @@map(name: "customer")
+}
+
+//חיסונים
+model Vaccinations {
+  vaccinationsIndex        Int                 @id @default(autoincrement())
+  date                     DateTime? @db.DateTime(0)
+  vaccineManufacturer      VaccineManufacturer @relation(fields: [vaccineManufacturerIndex], references: [vaccineManufacturerIndex])
+  vaccineManufacturerIndex Int
+  Customer                 Customer?           @relation(fields: [customerCustomerIndex], references: [customerIndex])
+  customerCustomerIndex    Int?
+
+  @@map(name: "vaccinations")
+}
+
+//יצרני חיסונים
+model VaccineManufacturer {
+  vaccineManufacturerIndex Int            @id @default(autoincrement())
+  vaccineManufacturerName  String         @unique(map: "userName_UNIQUE") @db.VarChar(255)
+  Vaccinations             Vaccinations[]
+
+  @@map(name: "vaccineManufacturer")
+}
+
+model Diseases {
+  diseasesIndex Int       @id @default(autoincrement())
+  startDate     DateTime? @db.DateTime(0)
+  endDate       DateTime? @db.DateTime(0)
+  customer      Customer  @relation(fields: [customerIndex], references: [customerIndex])
+  customerIndex Int       @unique(map: "customerIndex_UNIQUE")
+
+  @@map(name: "diseases")
+}
