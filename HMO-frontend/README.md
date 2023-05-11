@@ -1,27 +1,27 @@
-# HMOFront
+# HMO-frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.5.
+אסטרטגיית איכות שאלה בכתב נמצאת בפרויקט בקבצים שנקראים עמוד 7 שאלה 1
+ועמוד 7 שאלה 2
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+מסך לקוחות
+לחיצה על לקוח חדש פותח פופ אפ להכנסת נתונים שמירה שומר לקוח במסד נתונים
 
-## Build
+ניתן ללחוץ על סמל מחלות או חיסונים כדי לראות פרטים עבור כל לקוח
+![1](https://github.com/mirelovadya/HMO-frontend/assets/68642451/90e48a7b-9f7b-47ab-b711-4f9bcc70453b)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+מסך יצירת בידוד חדש
+ניתן לחפש כתובת בתפריט החיפוש
+וכן לבחור תאריך
+לחיצה על צור בידוד שולחת בקשה לצד שרת
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+![2](https://github.com/mirelovadya/HMO-frontend/assets/68642451/e67307f1-37d7-4b19-830c-9fdb706a9c78)
 
-## Running end-to-end tests
+מסך הצגת חולים פעילים בחודש האחרון
+![3](https://github.com/mirelovadya/HMO-frontend/assets/68642451/00a442e1-ff45-45d4-94af-3a7c73882246)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+מסך סכום חברי קופה מחוסנים
+![4](https://github.com/mirelovadya/HMO-frontend/assets/68642451/49c42294-8d25-4aa8-a4bf-ac871da100fe)
