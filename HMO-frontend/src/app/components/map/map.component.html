@@ -1,0 +1,56 @@
+<div class="pt-5">
+  <div class="pt-5">
+    <div class="row">
+      <div class="col-6 center">
+        <form (ngSubmit)="createIsolation()">
+          <div class="text-center">
+            <h5>יצירת בידוד קבוצתי חדש</h5>
+          </div>
+
+          <div>
+
+            <div class="container" dir="rtl">
+
+              <div class="row form-group my-2">
+                <input type="text" class="col form-control" (keydown.enter)="$event.preventDefault()"
+                  placeholder="הזן כתובת לחיפוש" autocorrect="off" autocapitalize="off" spellcheck="off" type="text"
+                  name="search" id="search" #search>
+              </div>
+              <div id="maps"></div>
+
+
+              <!-- <agm-map class="height" [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+                <agm-marker [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"></agm-marker>
+              </agm-map> -->
+
+              <!-- <h5>Address: {{address}}</h5> -->
+              <!-- <div>Latitude: {{latitude}}</div> -->
+              <!-- <div>Longitude: {{longitude}}</div> -->
+              <div class="row my-2">
+                <div class="col">
+                  <label>תאריך חשיפה לנגיף</label>
+                </div>
+                <div class="col">
+                  <div class="row">
+                    <input id="dateInput" name="dateInput" #dateInput="ngModel" required class="form-control"
+                      type="date" [(ngModel)]="date" />
+                  </div>
+                  <div *ngIf="(dateInput.invalid && (dateInput.dirty || dateInput.touched)) || displayError"
+                    class="row alert alert-danger">
+                    לא
+                    נבחר תאריך/מיקום, אנא נסו שנית</div>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+
+          <div class="">
+            <button type="submit" class="btn btn-primary">צור בידוד</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

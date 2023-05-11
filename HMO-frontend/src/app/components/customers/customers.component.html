@@ -1,0 +1,211 @@
+<div class="pt-5">
+    <h3 class="pt-5 row justify-content-center">חברי קופת חולים</h3>
+    <div class="row my-5">
+        <div class="col-10 AutoMargin">
+            <button class="mb-5 btn btn-primary" data-bs-toggle="modal" data-bs-target="#addCustomerModal">
+                לקוח חדש
+            </button>
+            <table dir="rtl" class="table table-striped p-3 text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">מזהה לקוח</th>
+                        <th scope="col">שם מלא</th>
+                        <th scope="col">ת.ז</th>
+                        <th scope="col">כתובת</th>
+                        <th scope="col">טלפון</th>
+                        <th scope="col">פלאפון</th>
+                        <th scope="col">יום הולדת</th>
+                        <th>חיסונים</th>
+                        <th class="center-text">מחלות</th>
+                        <th></th>
+                        <th></th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let customer of customers; let i=index">
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{customer.customerIndex}}</td>
+                        <td>{{customer.fullName}}</td>
+                        <td>{{customer.id}}</td>
+                        <td>{{customer.address}}</td>
+                        <td>{{customer.phone}}</td>
+                        <td>{{customer.mobilePhone}}</td>
+                        <td>{{customer.dateOfBirthay}}</td>
+                        <td>
+                            <i *ngIf="customer.vaccinations.length>0" (click)="editCustomer(i)" data-bs-toggle="modal"
+                                data-bs-target="#syringeModal" class="fas fa-syringe"></i>
+                        </td>
+                        <td>
+                            <i *ngIf="customer.diseases" (click)="editCustomer(i)" data-bs-toggle="modal"
+                                data-bs-target="#diseasesModal" class="fas fa-disease"></i>
+                        </td>
+                        <td (click)="editCustomer(i)" data-bs-toggle="modal" data-bs-target="#customerModal">
+                            <i class="fas fa-edit"></i>
+                        </td>
+                        <td>
+                            <input type="file" (change)="addImageUpload($event,i)" style="display:none"
+                                id="personImage{{i}}" name="fileImagedata" accept="image/*" />
+                            <img (click)="openUploadFile(i)" *ngIf="customer.image" src={{customer.image}} />
+                            <img (click)="openUploadFile(i)" *ngIf="!customer.image" src="../../../assets/male.png" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="modal fade" id="customerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" dir="rtl">
+            <div class="modal-content" *ngIf="currentIndex>=0">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body px-5">
+                    <div class="row align-items-center my-1">
+                        <label class="col-3">customerIndex</label>
+                        <label type="text"
+                            class="col form-control mx-3">{{customers[currentIndex].customerIndex}}</label>
+                    </div>
+                    <div class="row align-items-center my-1">
+                        <label class="col-3">fullName</label>
+                        <input type="text" class="col form-control mx-3"
+                            [(ngModel)]="customers[currentIndex].fullName" />
+                    </div>
+                    <div class="row align-items-center my-1">
+                        <label class="col-3">id</label>
+                        <input type="text" class="col form-control mx-3" [(ngModel)]="customers[currentIndex].id" />
+                    </div>
+                    <div class="row align-items-center my-1">
+                        <label class="col-3">address</label>
+                        <input type="text" class="col form-control mx-3"
+                            [(ngModel)]="customers[currentIndex].address" />
+                    </div>
+                    <div class="row align-items-center my-1">
+                        <label class="col-3">phone</label>
+                        <input type="text" class="col form-control mx-3" [(ngModel)]="customers[currentIndex].phone" />
+                    </div>
+                    <div class="row align-items-center my-1">
+                        <label class="col-3">mobilePhone</label>
+                        <input type="text" class="col form-control mx-3" [(ngModel)]="customers[currentIndex].phone" />
+                    </div>
+                    <div class="row align-items-center my-1">
+                        <label class="col-3">dateOfBirthay</label>
+                        <input type="text" class="col form-control mx-3" [(ngModel)]="customers[currentIndex].phone" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="syringeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" dir="rtl" *ngIf="currentIndex>=0 && customers[currentIndex].vaccinations">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">רשימת חיסונים</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body px-5">
+                    <div *ngFor="let vaccination of customers[currentIndex].vaccinations" class="card my-1 p-2">
+                        <div class="row align-items-center my-1">
+                            <label class="col-4">מזהה חיסון:</label>
+                            <label type="text" class="col form-control mx-3">{{vaccination.vaccinationsIndex}}</label>
+                        </div>
+                        <div class="row align-items-center my-1">
+                            <label class="col-4">תאריך:</label>
+                            <label type="text" class="col form-control mx-3">{{vaccination.date}}</label>
+                        </div>
+                        <div class="row align-items-center my-1">
+                            <label class="col-4">יצרן חיסון:</label>
+                            <label type="text"
+                                class="col form-control mx-3">{{vaccination.vaccineManufacturer.vaccineManufacturerName}}</label>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="diseasesModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" dir="rtl">
+            <div class="modal-content" *ngIf="currentIndex>=0 && customers[currentIndex].diseases">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">רשימת מחלות</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body px-5">
+                    <div class="row align-items-center my-1">
+                        <label class="col-4">מזהה מחלה:</label>
+                        <label type="text"
+                            class="col form-control mx-3">{{customers[currentIndex].diseases.diseasesIndex}}</label>
+                    </div>
+                    <div class="row align-items-center my-1">
+                        <label class="col-4">תאריך התחלה:</label>
+                        <label type="text"
+                            class="col form-control mx-3">{{customers[currentIndex].diseases.startDate}}</label>
+                    </div>
+                    <div class="row align-items-center my-1">
+                        <label class="col-4">תאריך התחלה:</label>
+                        <label type="text"
+                            class="col form-control mx-3">{{customers[currentIndex].diseases.endDate}}</label>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="addCustomerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" dir="rtl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">הוספת לקוח</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body px-5">
+                    <div class="row align-items-center my-1">
+                        <label class="col-3">fullName</label>
+                        <input type="text" class="col form-control mx-3" [(ngModel)]="newCustomer.fullName" />
+                    </div>
+                    <div class="row align-items-center my-1">
+                        <label class="col-3">id</label>
+                        <input type="text" class="col form-control mx-3" [(ngModel)]="newCustomer.id" />
+                    </div>
+                    <div class="row align-items-center my-1">
+                        <label class="col-3">address</label>
+                        <input type="text" class="col form-control mx-3" [(ngModel)]="newCustomer.address" />
+                    </div>
+                    <div class="row align-items-center my-1">
+                        <label class="col-3">phone</label>
+                        <input type="text" class="col form-control mx-3" [(ngModel)]="newCustomer.phone" />
+                    </div>
+                    <div class="row align-items-center my-1">
+                        <label class="col-3">mobilePhone</label>
+                        <input type="text" class="col form-control mx-3" [(ngModel)]="newCustomer.mobilePhone" />
+                    </div>
+                    <div class="row align-items-center my-1">
+                        <label class="col-3">dateOfBirthay</label>
+                        <input type="date" class="col form-control mx-3" [(ngModel)]="newCustomer.dateOfBirthay" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" (click)="addCustomer()">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+<nav class="navbar navbar-inverse backgroundTopNavbar" dir="rtl">
+    <ul class="nav navbar-nav row mx-5 px-5">
+        <li class="liStyle dropdown col-1">
+            <a (click)="navigateTo('customers')" id="len5" class="hoverable pointer white">
+                לקוחות
+            </a>
+        </li>
+
+        <li class="liStyle col-1">
+            <a (click)="navigateTo('map')" id="len6" class="hoverable pointer white">
+                יצירת בידוד
+            </a>
+        </li>
+
+        <div class="liStyle dropdown col-1">
+            <li class="liStyle">
+                <a id="len1" class="hoverable pointer white dropdown">
+                    גרפים
+                </a>
+                <div class="dropdown-content dropdown">
+                    <a (click)="navigateTo('activePatients')" class="pointer">חולים פעילים</a>
+                    <a (click)="navigateTo('vaccinated')" class="pointer">מחוסנים</a>
+                </div>
+            </li>
+        </div>
+    </ul>
+</nav>
+
+<!-- https://valor-software.com/ng2-charts/#LineChart -->
